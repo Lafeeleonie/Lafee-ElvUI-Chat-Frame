@@ -2,6 +2,12 @@
 
 All notable changes to Lafee ElvUI Chat Frame are documented in this file.
 
+## 1.0.1 - 2026-08-09
+
+- Stopped forcing the load-on-demand `ElvUI_Options` addon during startup.
+- Added defensive plugin-option registration when another addon has loaded ElvUI options unusually early.
+- Prevented a missing `E.Options.args.plugins` group from blocking this plugin's configuration panel.
+
 ## 1.0.0 - 2026-08-09
 
 - Added one to four profile-aware ElvUI chat movers.

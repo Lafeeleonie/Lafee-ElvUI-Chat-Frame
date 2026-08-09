@@ -90,6 +90,42 @@ function LECF:RefreshDatabase()
     self.db = E.db.lecf
 end
 
+function LECF:EnsurePluginOptionsGroup()
+    if not C_AddOns.IsAddOnLoaded("ElvUI_Options") then
+        return true
+    end
+
+    local options = E.Options
+    local plugins = options and options.args and options.args.plugins
+    if plugins and plugins.args and plugins.args.plugins then
+        return true
+    end
+
+    if options and options.args and type(EP.GetPluginOptions) == "function" then
+        return pcall(EP.GetPluginOptions, EP)
+    end
+
+    return false
+end
+
+function LECF:RegisterPluginOptions()
+    self:EnsurePluginOptionsGroup()
+
+    local callback = function()
+        self:RegisterOptions()
+    end
+    local registered = pcall(EP.RegisterPlugin, EP, addonName, callback)
+
+    if not registered and C_AddOns.IsAddOnLoaded("ElvUI_Options") and E.Options and E.Options.args then
+        self:RegisterOptions()
+        registered = true
+    end
+
+    if not registered then
+        PrintStandalone(L.ELVUI_INCOMPATIBLE)
+    end
+end
+
 function LECF:OnProfileChanged()
     self:RefreshDatabase()
     self:ScheduleApplyAll("PROFILE_CHANGED")
@@ -159,9 +195,9 @@ function LECF:OnInitialize()
     E.data.RegisterCallback(self, "OnProfileCopied", "OnProfileChanged")
     E.data.RegisterCallback(self, "OnProfileReset", "OnProfileChanged")
 
-    EP:RegisterPlugin(addonName, function()
-        self:RegisterOptions()
-    end)
+    self:RegisterPluginOptions()
 
     self.initialized = true
 end
+
+LECF:EnsurePluginOptionsGroup()
