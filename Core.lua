@@ -174,8 +174,14 @@ function LECF:RegisterSlashCommands()
     end
 end
 
-function LECF:OnInitialize()
+function LECF:Initialize()
+    if self.initialized or self.initializing then
+        return
+    end
+    self.initializing = true
+
     if not self:IsElvUICompatible() then
+        self.initializing = nil
         PrintStandalone(L.ELVUI_INCOMPATIBLE)
         return
     end
@@ -198,6 +204,11 @@ function LECF:OnInitialize()
     self:RegisterPluginOptions()
 
     self.initialized = true
+    self.initializing = nil
 end
 
-LECF:EnsurePluginOptionsGroup()
+if E.initialized then
+    LECF:Initialize()
+else
+    EP:HookInitialize(LECF, LECF.Initialize)
+end

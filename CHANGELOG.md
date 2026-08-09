@@ -2,6 +2,12 @@
 
 All notable changes to Lafee ElvUI Chat Frame are documented in this file.
 
+## 1.0.2 - 2026-08-09
+
+- Deferred plugin initialization until ElvUI has completed `E:Initialize`.
+- Fixed a startup error caused by accessing `E.data` before ElvUI created its profile database.
+- Added support for late addon loading when ElvUI is already initialized.
+
 ## 1.0.1 - 2026-08-09
 
 - Stopped forcing the load-on-demand `ElvUI_Options` addon during startup.
