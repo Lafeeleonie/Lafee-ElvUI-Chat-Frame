@@ -17,6 +17,8 @@ addon:RegisterLocale("deDE", {
     CUSTOM_NAME_DESC = "Optionale Beschriftung auf dem ElvUI-Mover.",
     WIDTH = "Breite",
     HEIGHT = "Höhe",
+    SHOW_BACKDROP = "Hintergrund anzeigen",
+    SHOW_BACKDROP_DESC = "Zeigt einen ElvUI-Hintergrund mit der Chatfensterfarbe des aktuellen Profils an.",
     LOCK_CHAT_WINDOW = "Chatfenster sperren",
     LOCK_CHAT_WINDOW_DESC = "Verwendet Blizzards Chatsperre für das angehängte Fenster. ChatFrame1 bleibt immer gesperrt.",
     CHAT_WINDOW = "Chatfenster",

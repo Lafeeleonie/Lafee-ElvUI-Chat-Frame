@@ -15,7 +15,7 @@ Future captures belong in [`docs/screenshots`](docs/screenshots/README.md). No p
 ## Features
 
 - One to four independent ElvUI movers.
-- Per-frame enable switch, custom label, width, height, Blizzard chat lock, and chat-window assignment.
+- Per-frame enable switch, custom label, width, height, ElvUI chat-panel background, Blizzard chat lock, and chat-window assignment.
 - ElvUI-profile storage for settings and mover positions.
 - Automatic restoration after reload, login, and ElvUI profile changes.
 - Safe handling of renamed, closed, newly created, docked, and missing chat windows.
@@ -53,6 +53,7 @@ For each active frame you can configure:
 - enabled state;
 - custom mover name;
 - width and height;
+- an optional ElvUI background, enabled by default and synchronized with the current Chat panel color;
 - Blizzard chat-window lock;
 - an existing persistent Blizzard chat window;
 - detachment;

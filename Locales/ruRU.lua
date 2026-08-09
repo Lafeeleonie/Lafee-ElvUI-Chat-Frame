@@ -17,6 +17,8 @@ addon:RegisterLocale("ruRU", {
     CUSTOM_NAME_DESC = "Необязательная подпись на якоре ElvUI.",
     WIDTH = "Ширина",
     HEIGHT = "Высота",
+    SHOW_BACKDROP = "Показывать фон",
+    SHOW_BACKDROP_DESC = "Показывает фон ElvUI с цветом панелей чата текущего профиля.",
     LOCK_CHAT_WINDOW = "Закрепить окно чата",
     LOCK_CHAT_WINDOW_DESC = "Использует блокировку чата Blizzard для привязанного окна. ChatFrame1 всегда остаётся закреплённым.",
     CHAT_WINDOW = "Окно чата",

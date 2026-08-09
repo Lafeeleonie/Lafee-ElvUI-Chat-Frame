@@ -2,6 +2,12 @@
 
 All notable changes to Lafee ElvUI Chat Frame are documented in this file.
 
+## 1.1.0 - 2026-08-09
+
+- Added an individually configurable ElvUI background to every chat mover.
+- Enabled backgrounds by default for both new and existing profiles.
+- Synchronized background color with the current ElvUI Chat panel color and refreshed it after profile or theme changes.
+
 ## 1.0.2 - 2026-08-09
 
 - Deferred plugin initialization until ElvUI has completed `E:Initialize`.

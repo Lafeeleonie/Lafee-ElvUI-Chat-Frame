@@ -17,6 +17,8 @@ addon:RegisterLocale("esMX", {
     CUSTOM_NAME_DESC = "Etiqueta opcional que aparece en el posicionador de ElvUI.",
     WIDTH = "Ancho",
     HEIGHT = "Alto",
+    SHOW_BACKDROP = "Mostrar fondo",
+    SHOW_BACKDROP_DESC = "Muestra un fondo de ElvUI con el color de los paneles de chat del perfil actual.",
     LOCK_CHAT_WINDOW = "Bloquear ventana de chat",
     LOCK_CHAT_WINDOW_DESC = "Usa el bloqueo de chat de Blizzard para la ventana asociada. ChatFrame1 siempre permanece bloqueada.",
     CHAT_WINDOW = "Ventana de chat",

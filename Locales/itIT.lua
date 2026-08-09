@@ -17,6 +17,8 @@ addon:RegisterLocale("itIT", {
     CUSTOM_NAME_DESC = "Etichetta facoltativa mostrata sul mover ElvUI.",
     WIDTH = "Larghezza",
     HEIGHT = "Altezza",
+    SHOW_BACKDROP = "Mostra sfondo",
+    SHOW_BACKDROP_DESC = "Mostra uno sfondo ElvUI usando il colore dei pannelli chat del profilo corrente.",
     LOCK_CHAT_WINDOW = "Blocca finestra di chat",
     LOCK_CHAT_WINDOW_DESC = "Usa il blocco chat di Blizzard per la finestra associata. ChatFrame1 rimane sempre bloccata.",
     CHAT_WINDOW = "Finestra di chat",

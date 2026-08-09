@@ -118,8 +118,20 @@ function LECF:CreateFrameOptions(index)
                     self:ScheduleApplyAll("SIZE_CHANGED")
                 end,
             },
-            locked = {
+            backdrop = {
                 order = 5,
+                type = "toggle",
+                name = L.SHOW_BACKDROP,
+                desc = L.SHOW_BACKDROP_DESC,
+                disabled = function() return Disabled() or not self:GetFrameConfig(index).enabled end,
+                get = function() return self:GetFrameConfig(index).backdrop end,
+                set = function(_, value)
+                    self:GetFrameConfig(index).backdrop = value
+                    self:UpdateMoverBackdrop(index)
+                end,
+            },
+            locked = {
+                order = 6,
                 type = "toggle",
                 name = L.LOCK_CHAT_WINDOW,
                 desc = L.LOCK_CHAT_WINDOW_DESC,
@@ -131,7 +143,7 @@ function LECF:CreateFrameOptions(index)
                 end,
             },
             chatWindow = {
-                order = 6,
+                order = 7,
                 type = "select",
                 name = L.CHAT_WINDOW,
                 desc = L.CHAT_WINDOW_DESC,
@@ -141,12 +153,12 @@ function LECF:CreateFrameOptions(index)
                 set = function(_, value) self:SetChatAssignment(index, value) end,
             },
             status = {
-                order = 7,
+                order = 8,
                 type = "description",
                 name = function() return self:GetAssignmentStatus(index) end,
             },
             detach = {
-                order = 8,
+                order = 9,
                 type = "execute",
                 name = L.DETACH,
                 desc = L.DETACH_DESC,
@@ -156,7 +168,7 @@ function LECF:CreateFrameOptions(index)
                 func = function() self:DetachSlot(index) end,
             },
             resetPosition = {
-                order = 9,
+                order = 10,
                 type = "execute",
                 name = L.RESET_POSITION,
                 desc = L.RESET_POSITION_DESC,

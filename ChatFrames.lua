@@ -277,6 +277,9 @@ function LECF:InitializeChatFrameHooks()
         if chatModule.PositionChat then
             self:SecureHook(chatModule, "PositionChat", "OnChatWindowsChanged")
         end
+        if chatModule.Panels_ColorUpdate then
+            self:SecureHook(chatModule, "Panels_ColorUpdate", "OnChatWindowsChanged")
+        end
     end
 
     local globalHooks = {

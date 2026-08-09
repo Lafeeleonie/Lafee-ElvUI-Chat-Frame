@@ -17,6 +17,8 @@ addon:RegisterLocale("frFR", {
     CUSTOM_NAME_DESC = "Libellé facultatif affiché sur le mover ElvUI.",
     WIDTH = "Largeur",
     HEIGHT = "Hauteur",
+    SHOW_BACKDROP = "Afficher le fond",
+    SHOW_BACKDROP_DESC = "Affiche un fond ElvUI utilisant la couleur des panneaux de discussion du profil actuel.",
     LOCK_CHAT_WINDOW = "Verrouiller la fenêtre",
     LOCK_CHAT_WINDOW_DESC = "Utilise le verrouillage Blizzard pour la fenêtre attachée. ChatFrame1 reste toujours verrouillée.",
     CHAT_WINDOW = "Fenêtre de discussion",

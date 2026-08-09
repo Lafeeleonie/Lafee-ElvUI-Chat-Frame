@@ -17,6 +17,8 @@ addon:RegisterLocale("enUS", {
     CUSTOM_NAME_DESC = "Optional label displayed on the ElvUI mover.",
     WIDTH = "Width",
     HEIGHT = "Height",
+    SHOW_BACKDROP = "Show background",
+    SHOW_BACKDROP_DESC = "Show an ElvUI backdrop using the Chat panel color from the current profile.",
     LOCK_CHAT_WINDOW = "Lock chat window",
     LOCK_CHAT_WINDOW_DESC = "Use Blizzard's chat lock for the attached window. ChatFrame1 always remains locked.",
     CHAT_WINDOW = "Chat window",

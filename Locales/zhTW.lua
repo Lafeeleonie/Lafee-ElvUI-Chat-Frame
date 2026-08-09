@@ -17,6 +17,8 @@ addon:RegisterLocale("zhTW", {
     CUSTOM_NAME_DESC = "顯示在 ElvUI 移動錨點上的選用名稱。",
     WIDTH = "寬度",
     HEIGHT = "高度",
+    SHOW_BACKDROP = "顯示背景",
+    SHOW_BACKDROP_DESC = "顯示使用目前設定檔聊天面板顏色的 ElvUI 背景。",
     LOCK_CHAT_WINDOW = "鎖定聊天視窗",
     LOCK_CHAT_WINDOW_DESC = "對關聯視窗使用暴雪聊天鎖定。ChatFrame1 永遠保持鎖定。",
     CHAT_WINDOW = "聊天視窗",

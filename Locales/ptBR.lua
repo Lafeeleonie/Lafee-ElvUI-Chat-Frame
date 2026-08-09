@@ -17,6 +17,8 @@ addon:RegisterLocale("ptBR", {
     CUSTOM_NAME_DESC = "Rótulo opcional exibido no posicionador do ElvUI.",
     WIDTH = "Largura",
     HEIGHT = "Altura",
+    SHOW_BACKDROP = "Mostrar fundo",
+    SHOW_BACKDROP_DESC = "Mostra um fundo do ElvUI com a cor dos painéis de bate-papo do perfil atual.",
     LOCK_CHAT_WINDOW = "Bloquear janela de bate-papo",
     LOCK_CHAT_WINDOW_DESC = "Usa o bloqueio de bate-papo da Blizzard na janela associada. A ChatFrame1 permanece sempre bloqueada.",
     CHAT_WINDOW = "Janela de bate-papo",

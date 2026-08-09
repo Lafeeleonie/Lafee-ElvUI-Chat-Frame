@@ -37,6 +37,29 @@ function LECF:IsSlotActive(index)
         and config.enabled
 end
 
+function LECF:UpdateMoverBackdrop(index)
+    local container = self.containers and self.containers[index]
+    local config = self:GetFrameConfig(index)
+    local backdrop = container and container.backdrop
+    if not backdrop or not config then return end
+
+    if not self:IsSlotActive(index) or not config.backdrop then
+        backdrop:Hide()
+        return
+    end
+
+    -- Reapplying the template keeps borders in sync after an ElvUI media/profile change.
+    backdrop:SetTemplate("Transparent", nil, true)
+
+    local chatModule = E:GetModule("Chat", true)
+    local panelColor = chatModule and chatModule.db and chatModule.db.panelColor
+    if panelColor then
+        backdrop:SetBackdropColor(panelColor.r, panelColor.g, panelColor.b, panelColor.a)
+    end
+
+    backdrop:Show()
+end
+
 function LECF:InitializeMovers()
     self.containers = {}
     E:ConfigMode_AddGroup("LAFEE", L.ADDON_NAME)
@@ -47,6 +70,8 @@ function LECF:InitializeMovers()
         container:SetSize(self.MIN_WIDTH, self.MIN_HEIGHT)
         container:SetFrameStrata("BACKGROUND")
         container:EnableMouse(false)
+        container:CreateBackdrop("Transparent", nil, true)
+        container.backdrop:EnableMouse(false)
         container:Show()
 
         self.containers[index] = container
@@ -92,6 +117,7 @@ function LECF:UpdateMover(index)
     config.height = height
     container:SetSize(width, height)
     self:UpdateMoverLabel(index)
+    self:UpdateMoverBackdrop(index)
 
     local moverName = self:GetMoverName(index)
     if self:IsSlotActive(index) then

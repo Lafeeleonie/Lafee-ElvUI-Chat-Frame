@@ -17,6 +17,8 @@ addon:RegisterLocale("koKR", {
     CUSTOM_NAME_DESC = "ElvUI 이동기에 표시할 선택적 이름입니다.",
     WIDTH = "너비",
     HEIGHT = "높이",
+    SHOW_BACKDROP = "배경 표시",
+    SHOW_BACKDROP_DESC = "현재 프로필의 대화 패널 색상을 사용하는 ElvUI 배경을 표시합니다.",
     LOCK_CHAT_WINDOW = "대화창 잠금",
     LOCK_CHAT_WINDOW_DESC = "연결된 창에 블리자드 대화창 잠금을 적용합니다. ChatFrame1은 항상 잠긴 상태로 유지됩니다.",
     CHAT_WINDOW = "대화창",

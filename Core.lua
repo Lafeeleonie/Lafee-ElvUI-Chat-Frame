@@ -42,10 +42,10 @@ P.lecf = {
     frameCount = 1,
     debug = false,
     frames = {
-        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, locked = true, chatWindowID = 0 },
-        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, locked = true, chatWindowID = 0 },
-        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, locked = true, chatWindowID = 0 },
-        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, locked = true, chatWindowID = 0 },
+        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = true, locked = true, chatWindowID = 0 },
+        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = true, locked = true, chatWindowID = 0 },
+        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = true, locked = true, chatWindowID = 0 },
+        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = true, locked = true, chatWindowID = 0 },
     },
 }
 
