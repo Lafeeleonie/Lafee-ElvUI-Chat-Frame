@@ -17,6 +17,7 @@ Future captures belong in [`docs/screenshots`](docs/screenshots/README.md). No p
 - One to four independent ElvUI movers.
 - Per-frame enable switch, custom label, width, height, ElvUI chat-panel background, Blizzard chat lock, and chat-window assignment.
 - Persistent anchoring to the screen or any loaded ElvUI mover, with independent anchor points and offsets.
+- Full chat-window titles for attached undocked tabs, constrained only by the panel width.
 - ElvUI-profile storage for settings and mover positions.
 - Automatic restoration after reload, login, and ElvUI profile changes.
 - Safe handling of renamed, closed, newly created, docked, and missing chat windows.
@@ -64,6 +65,8 @@ For each active frame you can configure:
 Use **Move frames** to enter ElvUI's normal mover mode. Position is stored by `E.db.movers`; the plugin does not duplicate that state. Size is configured with the width and height controls because ElvUI movers do not provide native interactive resize handles.
 
 The configured width and height represent the complete panel. The attached Blizzard chat region is inset like ElvUI's built-in panels, leaving five pixels at the sides and bottom and enough room at the top for the normal chat tab. Selecting another anchor preserves the current screen position. Dragging a mover manually uses ElvUI's native behavior and anchors it back to the screen.
+
+Attached undocked tabs expand to their full title when it fits inside the panel. Docked tabs remain controlled by Blizzard because several windows may share the same dock row.
 
 The content of each chat window is still configured through Blizzard's normal chat-tab menu. The plugin never imposes message groups or channels.
 

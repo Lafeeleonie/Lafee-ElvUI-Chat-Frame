@@ -47,6 +47,17 @@ local function GetAnchorCoordinates(frame, point)
     return left + (width * factor[1]), bottom + (height * factor[2])
 end
 
+local function GetSavedMoverAnchor(moverName)
+    local setting = E.db and E.db.movers and E.db.movers[moverName]
+    if type(setting) ~= "string" then return end
+
+    local delimiter = string.find(setting, "\031", 1, true) and "\031" or ","
+    local point, targetName, relativePoint, xOffset, yOffset = strsplit(delimiter, setting)
+    if not point or not targetName or not relativePoint then return end
+
+    return point, targetName, relativePoint, tonumber(xOffset) or 0, tonumber(yOffset) or 0
+end
+
 function LECF:GetMoverName(index)
     return "LafeeChatFrameMover" .. index
 end
@@ -125,15 +136,21 @@ function LECF:GetAnchorTargetOrder(index)
 end
 
 function LECF:GetMoverAnchor(index)
-    local holder = E:GetMoverHolder(self:GetMoverName(index))
+    local moverName = self:GetMoverName(index)
+    local point, targetName, relativePoint, xOffset, yOffset = GetSavedMoverAnchor(moverName)
+    if point then
+        return point, targetName, relativePoint, xOffset, yOffset
+    end
+
+    local holder = E:GetMoverHolder(moverName)
     local mover = holder and holder.mover
     if not mover then
         return "CENTER", "UIParent", "CENTER", 0, 0
     end
 
-    local point, relativeTo, relativePoint, xOffset, yOffset = mover:GetPoint()
-    local targetName = relativeTo and relativeTo.GetName and relativeTo:GetName()
-    return point or "CENTER", targetName or "UIParent", relativePoint or point or "CENTER", xOffset or 0, yOffset or 0
+    local actualPoint, relativeTo, actualRelativePoint, actualXOffset, actualYOffset = mover:GetPoint()
+    local actualTargetName = relativeTo and relativeTo.GetName and relativeTo:GetName()
+    return actualPoint or "CENTER", actualTargetName or "UIParent", actualRelativePoint or actualPoint or "CENTER", actualXOffset or 0, actualYOffset or 0
 end
 
 function LECF:WouldCreateAnchorCycle(index, targetName)
@@ -206,6 +223,9 @@ function LECF:SetMoverAnchor(index, changedField, value)
         E:Round(tonumber(yOffset) or 0)
     )
 
+    if not (InCombatLockdown and InCombatLockdown()) then
+        E:SetMoverPoints(moverName)
+    end
     self:ScheduleApplyAll("ANCHOR_CHANGED")
     self:RefreshOptions()
 end

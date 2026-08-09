@@ -2,6 +2,12 @@
 
 All notable changes to Lafee ElvUI Chat Frame are documented in this file.
 
+## 1.2.1 - 2026-08-09
+
+- Applied anchor values immediately outside combat so option fields no longer need to be entered repeatedly.
+- Expanded attached undocked chat tabs from their unbounded text width so normal window names are no longer truncated.
+- Kept docked tab sizing under Blizzard's dock manager to avoid overlapping multiple tabs.
+
 ## 1.2.0 - 2026-08-09
 
 - Changed mover dimensions to represent the complete ElvUI chat panel, including the tab/title area.

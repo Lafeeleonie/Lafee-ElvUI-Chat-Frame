@@ -22,7 +22,7 @@
 ## Notes-zhCN: 为暴雪聊天窗口添加随配置保存的 ElvUI 移动锚点。
 ## Notes-zhTW: 為暴雪聊天視窗新增隨設定檔儲存的 ElvUI 移動錨點。
 ## Author: Lafee
-## Version: 1.2.0
+## Version: 1.2.1
 ## OptionalDeps: ElvUI
 ## X-ElvUIPlugin: true
 ## X-Category: Chat

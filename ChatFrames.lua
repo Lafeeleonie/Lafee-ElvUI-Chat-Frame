@@ -100,6 +100,23 @@ function LECF:GetAssignmentStatus(index)
     return string.format(L.STATUS_MISSING, id)
 end
 
+function LECF:ResizeAttachedChatTab(chatFrame, container)
+    if not chatFrame or not container or chatFrame.isDocked then return end
+
+    local tab = _G[chatFrame:GetName() .. "Tab"]
+    local text = tab and (tab.Text or _G[tab:GetName() .. "Text"])
+    if not tab or not text then return end
+
+    local textWidth = text.GetUnboundedStringWidth and text:GetUnboundedStringWidth() or text:GetStringWidth()
+    local panelWidth = container:GetWidth()
+    if not E:NotSecretValue(textWidth) or not E:NotSecretValue(panelWidth) then return end
+
+    local availableWidth = math.max(1, panelWidth - (PANEL_INSET * 2))
+    local tabWidth = math.min(availableWidth, math.max(60, math.ceil(textWidth + 24)))
+    tab:SetWidth(tabWidth)
+    text:SetWidth(math.max(1, tabWidth - 12))
+end
+
 function LECF:RestoreChatFrame(chatFrame)
     if not chatFrame then return end
 
@@ -180,6 +197,7 @@ function LECF:AttachSlot(index)
     end
 
     local tab = _G[chatFrame:GetName() .. "Tab"]
+    self:ResizeAttachedChatTab(chatFrame, container)
     chatFrame:Show()
     if tab then
         tab:Show()
