@@ -279,7 +279,7 @@ function LECF:InitializeMovers()
                 LECF:ScheduleApplyAll("MOVER_DRAGGED")
                 LECF:RefreshOptions()
             end,
-            "LAFEE",
+            "ALL,LAFEE",
             function()
                 return not LECF:IsSlotActive(index)
             end,

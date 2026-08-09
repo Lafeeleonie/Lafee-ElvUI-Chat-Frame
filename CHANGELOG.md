@@ -2,6 +2,12 @@
 
 All notable changes to Lafee ElvUI Chat Frame are documented in this file.
 
+## 1.2.2 - 2026-08-09
+
+- Registered Lafee chat movers in ElvUI's global `ALL` mover group.
+- Fixed Lafee frames not appearing or being draggable through `/moveui`.
+- Kept the dedicated Lafee mover group available from the plugin options.
+
 ## 1.2.1 - 2026-08-09
 
 - Applied anchor values immediately outside combat so option fields no longer need to be entered repeatedly.

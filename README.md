@@ -62,7 +62,7 @@ For each active frame you can configure:
 - detachment;
 - mover-position reset.
 
-Use **Move frames** to enter ElvUI's normal mover mode. Position is stored by `E.db.movers`; the plugin does not duplicate that state. Size is configured with the width and height controls because ElvUI movers do not provide native interactive resize handles.
+Use **Move frames** or `/moveui` to enter ElvUI's normal mover mode. Lafee frames belong to both the global ElvUI mover group and their dedicated Lafee group. Position is stored by `E.db.movers`; the plugin does not duplicate that state. Size is configured with the width and height controls because ElvUI movers do not provide native interactive resize handles.
 
 The configured width and height represent the complete panel. The attached Blizzard chat region is inset like ElvUI's built-in panels, leaving five pixels at the sides and bottom and enough room at the top for the normal chat tab. Selecting another anchor preserves the current screen position. Dragging a mover manually uses ElvUI's native behavior and anchors it back to the screen.
 
