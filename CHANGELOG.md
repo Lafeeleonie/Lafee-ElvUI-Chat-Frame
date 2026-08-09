@@ -2,6 +2,14 @@
 
 All notable changes to Lafee ElvUI Chat Frame are documented in this file.
 
+## 1.2.0 - 2026-08-09
+
+- Changed mover dimensions to represent the complete ElvUI chat panel, including the tab/title area.
+- Added ElvUI-compatible inner margins so attached chat windows no longer overflow the right or bottom edges.
+- Suppressed the attached undocked window background to avoid stacking it over the mover backdrop, and restore it when detached.
+- Added persistent anchoring to the screen or any loaded ElvUI mover with configurable frame point, target point, and offsets.
+- Preserved the current screen position when changing anchor targets or points and rejected circular anchors.
+
 ## 1.1.0 - 2026-08-09
 
 - Added an individually configurable ElvUI background to every chat mover.

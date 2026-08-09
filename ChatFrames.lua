@@ -5,6 +5,9 @@ if not LECF then return end
 local E = LECF.E
 local L = LECF.L
 
+local PANEL_INSET = 5
+local PANEL_TOP_INSET = 27
+
 local function IsInCombat()
     return InCombatLockdown and InCombatLockdown()
 end
@@ -102,10 +105,12 @@ function LECF:RestoreChatFrame(chatFrame)
 
     chatFrame:ClearAllPoints()
     local chatModule = E:GetModule("Chat", true)
-    if chatFrame == DEFAULT_CHAT_FRAME and chatModule and chatModule.PositionChat then
-        chatModule:PositionChat(chatFrame)
-    elseif FCF_RestorePositionAndDimensions then
+    if FCF_RestorePositionAndDimensions then
         FCF_RestorePositionAndDimensions(chatFrame)
+    end
+
+    if chatModule and chatModule.PositionChat then
+        chatModule:PositionChat(chatFrame)
     end
 end
 
@@ -159,14 +164,19 @@ function LECF:AttachSlot(index)
     end
 
     chatFrame:ClearAllPoints()
-    chatFrame:SetPoint("TOPLEFT", container, "TOPLEFT", 0, 0)
-    chatFrame:SetPoint("BOTTOMRIGHT", container, "BOTTOMRIGHT", 0, 0)
+    chatFrame:SetPoint("BOTTOMLEFT", container, "BOTTOMLEFT", PANEL_INSET, PANEL_INSET)
+    chatFrame:SetPoint("TOPRIGHT", container, "TOPRIGHT", -PANEL_INSET, -PANEL_TOP_INSET)
     chatFrame:SetUserPlaced(true)
     chatFrame:SetMovable(true)
     chatFrame:SetClampedToScreen(false)
 
     if FCF_SetLocked then
         FCF_SetLocked(chatFrame, chatFrame == DEFAULT_CHAT_FRAME or config.locked)
+    end
+
+    local chatModule = E:GetModule("Chat", true)
+    if chatModule and chatModule.ShowBackground then
+        chatModule:ShowBackground(chatFrame.Background, false)
     end
 
     local tab = _G[chatFrame:GetName() .. "Tab"]

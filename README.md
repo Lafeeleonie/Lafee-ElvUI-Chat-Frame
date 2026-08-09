@@ -16,6 +16,7 @@ Future captures belong in [`docs/screenshots`](docs/screenshots/README.md). No p
 
 - One to four independent ElvUI movers.
 - Per-frame enable switch, custom label, width, height, ElvUI chat-panel background, Blizzard chat lock, and chat-window assignment.
+- Persistent anchoring to the screen or any loaded ElvUI mover, with independent anchor points and offsets.
 - ElvUI-profile storage for settings and mover positions.
 - Automatic restoration after reload, login, and ElvUI profile changes.
 - Safe handling of renamed, closed, newly created, docked, and missing chat windows.
@@ -54,12 +55,15 @@ For each active frame you can configure:
 - custom mover name;
 - width and height;
 - an optional ElvUI background, enabled by default and synchronized with the current Chat panel color;
+- an anchor target (screen or another loaded ElvUI mover), frame/target points, and horizontal/vertical offsets;
 - Blizzard chat-window lock;
 - an existing persistent Blizzard chat window;
 - detachment;
 - mover-position reset.
 
 Use **Move frames** to enter ElvUI's normal mover mode. Position is stored by `E.db.movers`; the plugin does not duplicate that state. Size is configured with the width and height controls because ElvUI movers do not provide native interactive resize handles.
+
+The configured width and height represent the complete panel. The attached Blizzard chat region is inset like ElvUI's built-in panels, leaving five pixels at the sides and bottom and enough room at the top for the normal chat tab. Selecting another anchor preserves the current screen position. Dragging a mover manually uses ElvUI's native behavior and anchors it back to the screen.
 
 The content of each chat window is still configured through Blizzard's normal chat-tab menu. The plugin never imposes message groups or channels.
 
@@ -109,17 +113,20 @@ The source passes static Lua parsing and localization parity checks. The followi
 1. Start with one enabled mover and no automatic chat movement.
 2. Change the count from one to four and move every mover.
 3. Change width and height for every mover.
-4. Attach an undocked persistent chat window.
-5. Attach a secondary docked window and confirm it is undocked cleanly.
-6. Attach `ChatFrame1` and verify the primary dock and tabs remain usable.
-7. Run `/reload`, then reconnect, and verify all associations and dimensions.
-8. Change, copy, and reset an ElvUI profile.
-9. Create a new Blizzard chat window and confirm it appears in the selector.
-10. Rename an assigned tab and verify the association remains.
-11. Close an assigned window and confirm the mover remains available with a missing status.
-12. Enter and leave combat while an update is pending.
-13. Verify item links, player right-click menus, whispers, Battle.net whispers, channels, scrolling, edit boxes, and tab menus.
-14. Repeat the tests with ElvUI Chat enabled; this is the priority configuration.
+4. Confirm the chat text, scroll controls, and tab remain inside every mover on all four screen edges.
+5. Anchor a mover to the screen, then to several ElvUI movers, and verify it follows its target.
+6. Change frame/target points and offsets, then run `/reload` and change ElvUI profiles.
+7. Attach an undocked persistent chat window.
+8. Attach a secondary docked window and confirm it is undocked cleanly.
+9. Attach `ChatFrame1` and verify the primary dock and tabs remain usable.
+10. Run `/reload`, then reconnect, and verify all associations and dimensions.
+11. Change, copy, and reset an ElvUI profile.
+12. Create a new Blizzard chat window and confirm it appears in the selector.
+13. Rename an assigned tab and verify the association remains.
+14. Close an assigned window and confirm the mover remains available with a missing status.
+15. Enter and leave combat while an update is pending.
+16. Verify item links, player right-click menus, whispers, Battle.net whispers, channels, scrolling, edit boxes, and tab menus.
+17. Repeat the tests with ElvUI Chat enabled; this is the priority configuration.
 
 Please report the exact Lua stack trace and reproduction steps for any in-game failure.
 

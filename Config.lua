@@ -130,8 +130,89 @@ function LECF:CreateFrameOptions(index)
                     self:UpdateMoverBackdrop(index)
                 end,
             },
-            locked = {
+            anchoring = {
                 order = 6,
+                type = "group",
+                inline = true,
+                name = L.ANCHORING,
+                args = {
+                    description = {
+                        order = 1,
+                        type = "description",
+                        name = L.ANCHORING_DESC,
+                    },
+                    target = {
+                        order = 2,
+                        type = "select",
+                        name = L.ANCHOR_TARGET,
+                        desc = L.ANCHOR_TARGET_DESC,
+                        values = function() return self:GetAnchorTargetValues(index) end,
+                        sorting = function() return self:GetAnchorTargetOrder(index) end,
+                        disabled = function() return Disabled() or not self:GetFrameConfig(index).enabled end,
+                        get = function()
+                            local _, targetName = self:GetMoverAnchor(index)
+                            return targetName
+                        end,
+                        set = function(_, value) self:SetMoverAnchor(index, "target", value) end,
+                    },
+                    point = {
+                        order = 3,
+                        type = "select",
+                        name = L.FRAME_POINT,
+                        values = function() return self:GetAnchorPointValues() end,
+                        sorting = LECF.ANCHOR_POINTS,
+                        disabled = function() return Disabled() or not self:GetFrameConfig(index).enabled end,
+                        get = function()
+                            local point = self:GetMoverAnchor(index)
+                            return point
+                        end,
+                        set = function(_, value) self:SetMoverAnchor(index, "point", value) end,
+                    },
+                    relativePoint = {
+                        order = 4,
+                        type = "select",
+                        name = L.RELATIVE_POINT,
+                        values = function() return self:GetAnchorPointValues() end,
+                        sorting = LECF.ANCHOR_POINTS,
+                        disabled = function() return Disabled() or not self:GetFrameConfig(index).enabled end,
+                        get = function()
+                            local _, _, relativePoint = self:GetMoverAnchor(index)
+                            return relativePoint
+                        end,
+                        set = function(_, value) self:SetMoverAnchor(index, "relativePoint", value) end,
+                    },
+                    xOffset = {
+                        order = 5,
+                        type = "range",
+                        name = L.X_OFFSET,
+                        min = -4000,
+                        max = 4000,
+                        step = 1,
+                        disabled = function() return Disabled() or not self:GetFrameConfig(index).enabled end,
+                        get = function()
+                            local _, _, _, xOffset = self:GetMoverAnchor(index)
+                            return E:Round(xOffset)
+                        end,
+                        set = function(_, value) self:SetMoverAnchor(index, "xOffset", value) end,
+                    },
+                    yOffset = {
+                        order = 6,
+                        type = "range",
+                        name = L.Y_OFFSET,
+                        min = -4000,
+                        max = 4000,
+                        step = 1,
+                        disabled = function() return Disabled() or not self:GetFrameConfig(index).enabled end,
+                        get = function()
+                            local _, _, _, _, yOffset = self:GetMoverAnchor(index)
+                            return E:Round(yOffset)
+                        end,
+                        set = function(_, value) self:SetMoverAnchor(index, "yOffset", value) end,
+                    },
+                },
+            },
+            locked = {
+                order = 7,
                 type = "toggle",
                 name = L.LOCK_CHAT_WINDOW,
                 desc = L.LOCK_CHAT_WINDOW_DESC,
@@ -143,7 +224,7 @@ function LECF:CreateFrameOptions(index)
                 end,
             },
             chatWindow = {
-                order = 7,
+                order = 8,
                 type = "select",
                 name = L.CHAT_WINDOW,
                 desc = L.CHAT_WINDOW_DESC,
@@ -153,12 +234,12 @@ function LECF:CreateFrameOptions(index)
                 set = function(_, value) self:SetChatAssignment(index, value) end,
             },
             status = {
-                order = 8,
+                order = 9,
                 type = "description",
                 name = function() return self:GetAssignmentStatus(index) end,
             },
             detach = {
-                order = 9,
+                order = 10,
                 type = "execute",
                 name = L.DETACH,
                 desc = L.DETACH_DESC,
@@ -168,7 +249,7 @@ function LECF:CreateFrameOptions(index)
                 func = function() self:DetachSlot(index) end,
             },
             resetPosition = {
-                order = 10,
+                order = 11,
                 type = "execute",
                 name = L.RESET_POSITION,
                 desc = L.RESET_POSITION_DESC,
