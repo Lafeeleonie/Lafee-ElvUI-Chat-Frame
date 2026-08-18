@@ -37,7 +37,7 @@ The plugin checks for the required ElvUI plugin and mover APIs. If ElvUI is abse
 ## Installation
 
 1. Download or clone the repository.
-2. Ensure the installed folder is named `Lafee_ElvUI_ChatFrame`.
+2. Ensure the installed folder is named `lafee_elvui_chat_frame`.
 3. Place it in `World of Warcraft/_retail_/Interface/AddOns/`.
 4. Enable ElvUI and Lafee ElvUI Chat Frame on the character-selection screen.
 5. Log in or run `/reload`.

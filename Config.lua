@@ -12,6 +12,11 @@ local function Disabled()
     return not LECF.db.enabled
 end
 
+local function GetChatPanelColor()
+    local chatModule = E:GetModule("Chat", true)
+    return chatModule and chatModule.db and chatModule.db.panelColor or { r = 0.06, g = 0.06, b = 0.06, a = 0.8 }
+end
+
 function LECF:InitializeConfig()
     StaticPopupDialogs[self.RESET_POSITION_POPUP] = {
         text = L.CONFIRM_RESET_POSITION,
@@ -130,8 +135,46 @@ function LECF:CreateFrameOptions(index)
                     self:UpdateMoverBackdrop(index)
                 end,
             },
-            anchoring = {
+            backgroundColor = {
                 order = 6,
+                type = "color",
+                name = L.BACKGROUND_COLOR,
+                desc = L.BACKGROUND_COLOR_DESC,
+                hasAlpha = false,
+                disabled = function() return Disabled() or not self:GetFrameConfig(index).enabled end,
+                get = function()
+                    local config = self:GetFrameConfig(index)
+                    local panelColor = GetChatPanelColor()
+                    local color = config.backgroundColor or panelColor
+                    return color.r, color.g, color.b
+                end,
+                set = function(_, r, g, b)
+                    self:GetFrameConfig(index).backgroundColor = { r = r, g = g, b = b }
+                    self:ScheduleApplyAll("BACKGROUND_COLOR_CHANGED")
+                end,
+            },
+            backgroundAlpha = {
+                order = 7,
+                type = "range",
+                name = L.BACKGROUND_OPACITY,
+                desc = L.BACKGROUND_OPACITY_DESC,
+                min = 0,
+                max = 1,
+                step = 0.01,
+                isPercent = true,
+                disabled = function() return Disabled() or not self:GetFrameConfig(index).enabled end,
+                get = function()
+                    local config = self:GetFrameConfig(index)
+                    if config.backgroundAlpha ~= nil then return config.backgroundAlpha end
+                    return GetChatPanelColor().a
+                end,
+                set = function(_, value)
+                    self:GetFrameConfig(index).backgroundAlpha = value
+                    self:ScheduleApplyAll("BACKGROUND_OPACITY_CHANGED")
+                end,
+            },
+            anchoring = {
+                order = 8,
                 type = "group",
                 inline = true,
                 name = L.ANCHORING,

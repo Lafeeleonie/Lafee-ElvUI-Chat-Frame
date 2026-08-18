@@ -191,10 +191,7 @@ function LECF:AttachSlot(index)
         FCF_SetLocked(chatFrame, chatFrame == DEFAULT_CHAT_FRAME or config.locked)
     end
 
-    local chatModule = E:GetModule("Chat", true)
-    if chatModule and chatModule.ShowBackground then
-        chatModule:ShowBackground(chatFrame.Background, false)
-    end
+    self:UpdateChatBackground(chatFrame, index)
 
     local tab = _G[chatFrame:GetName() .. "Tab"]
     self:ResizeAttachedChatTab(chatFrame, container)

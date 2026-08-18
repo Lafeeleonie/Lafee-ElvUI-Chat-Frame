@@ -41,11 +41,12 @@ P.lecf = {
     enabled = true,
     frameCount = 1,
     debug = false,
+    backgroundSettingsVersion = 0,
     frames = {
-        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = true, locked = true, chatWindowID = 0 },
-        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = true, locked = true, chatWindowID = 0 },
-        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = true, locked = true, chatWindowID = 0 },
-        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = true, locked = true, chatWindowID = 0 },
+        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = false, locked = true, chatWindowID = 0 },
+        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = false, locked = true, chatWindowID = 0 },
+        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = false, locked = true, chatWindowID = 0 },
+        { enabled = true, name = "", width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT, backdrop = false, locked = true, chatWindowID = 0 },
     },
 }
 
@@ -88,6 +89,17 @@ end
 
 function LECF:RefreshDatabase()
     self.db = E.db.lecf
+end
+
+function LECF:MigrateChatBackgroundSettings()
+    if (self.db.backgroundSettingsVersion or 0) >= 1 then return end
+
+    for _, config in ipairs(self.db.frames or {}) do
+        -- Older versions enabled a second mover backdrop by default. Keep the
+        -- native chat background as the sole default background from now on.
+        config.backdrop = false
+    end
+    self.db.backgroundSettingsVersion = 1
 end
 
 function LECF:EnsurePluginOptionsGroup()
@@ -187,6 +199,7 @@ function LECF:Initialize()
     end
 
     self:RefreshDatabase()
+    self:MigrateChatBackgroundSettings()
     self:RegisterSlashCommands()
     self:InitializeMovers()
     self:InitializeChatFrameHooks()

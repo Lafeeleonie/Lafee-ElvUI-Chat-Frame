@@ -245,12 +245,39 @@ function LECF:UpdateMoverBackdrop(index)
     backdrop:SetTemplate("Transparent", nil, true)
 
     local chatModule = E:GetModule("Chat", true)
-    local panelColor = chatModule and chatModule.db and chatModule.db.panelColor
-    if panelColor then
-        backdrop:SetBackdropColor(panelColor.r, panelColor.g, panelColor.b, panelColor.a)
-    end
+    local panelColor = chatModule and chatModule.db and chatModule.db.panelColor or {}
+    local color = config.backgroundColor or panelColor
+    local alpha = config.backgroundAlpha
+    if alpha == nil then alpha = panelColor.a end
+    backdrop:SetBackdropColor(color.r or 0.06, color.g or 0.06, color.b or 0.06, alpha or 0.8)
 
     backdrop:Show()
+end
+
+function LECF:UpdateChatBackground(chatFrame, index)
+    if not chatFrame or not chatFrame.Background then return end
+
+    local config = self:GetFrameConfig(index)
+    if not config then return end
+
+    local chatModule = E:GetModule("Chat", true)
+    if chatModule and chatModule.ShowBackground then
+        chatModule:ShowBackground(chatFrame.Background, true)
+    else
+        chatFrame.Background:Show()
+    end
+
+    local panelColor = chatModule and chatModule.db and chatModule.db.panelColor or {}
+    local color = config.backgroundColor or panelColor
+    local alpha = config.backgroundAlpha
+    if alpha == nil then alpha = panelColor.a end
+
+    local background = chatFrame.Background
+    if background.SetBackdropColor then
+        background:SetBackdropColor(color.r or 0.06, color.g or 0.06, color.b or 0.06, alpha or 0.8)
+    elseif background.backdrop and background.backdrop.SetBackdropColor then
+        background.backdrop:SetBackdropColor(color.r or 0.06, color.g or 0.06, color.b or 0.06, alpha or 0.8)
+    end
 end
 
 function LECF:InitializeMovers()
